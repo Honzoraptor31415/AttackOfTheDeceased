@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://gr71mncd48k0"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_2ib2v"]
-[ext_resource type="Texture2D" uid="uid://bta6abi7bnlwb" path="res://assets/zombie.png" id="1_a8mth"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="2_mbuas"]
+[ext_resource type="Texture2D" uid="uid://crd6yvjxmeheb" path="res://assets/zombie.svg" id="2_xrgvd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2m1i5"]
 radius = 39.0128
@@ -16,7 +16,7 @@ script = ExtResource("1_2ib2v")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.126e-06, 2.38419e-06)
 scale = Vector2(0.218579, 0.241692)
-texture = ExtResource("1_a8mth")
+texture = ExtResource("2_xrgvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2m1i5")

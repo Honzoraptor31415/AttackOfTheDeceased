@@ -16,12 +16,9 @@ func _physics_process(_delta):
 		velocity = position.direction_to(player.position) * speed
 	move_and_slide()
 
-
 func _on_movement_timer_timeout():
-	var random_vector = Vector2(rng.randf_range(-100.0, 100.0), rng.randf_range(-100.0, 100.0))
 	if(not is_player_nearby):
-		look_at(random_vector)
-		velocity = position.direction_to(random_vector) * speed
+		go_to_random_position()
 
 func _on_area_2d_body_entered(body):
 	if(body == player):
@@ -30,3 +27,10 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if(body == player):
 		is_player_nearby = false
+		go_to_random_position()
+
+
+func go_to_random_position():
+	var random_vector = Vector2(rng.randf_range(-100.0, 100.0), rng.randf_range(-100.0, 100.0))
+	look_at(random_vector)
+	velocity = position.direction_to(random_vector) * speed

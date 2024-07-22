@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7hin3g6hfkey"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_y0f54"]
-[ext_resource type="Texture2D" uid="uid://cnbi1vrdhbm7n" path="res://assets/player.png" id="1_yr517"]
+[ext_resource type="Texture2D" uid="uid://4rvokjdnbnst" path="res://assets/player.svg" id="3_1myxg"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="3_81m33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5k6oi"]
@@ -11,7 +11,7 @@ radius = 39.0128
 script = ExtResource("1_y0f54")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(67, -5.96047e-07)
+position = Vector2(2.38419e-07, -5.96046e-07)
 scale = Vector2(1.6, 1.6)
 shadow_enabled = true
 texture = ExtResource("3_81m33")
@@ -19,9 +19,11 @@ texture = ExtResource("3_81m33")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.126e-06, 2.38419e-06)
 scale = Vector2(0.218579, 0.241692)
-texture = ExtResource("1_yr517")
+texture = ExtResource("3_1myxg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5k6oi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
