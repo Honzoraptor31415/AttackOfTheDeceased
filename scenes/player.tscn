@@ -10,6 +10,12 @@ radius = 39.0128
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y0f54")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(67, -5.96047e-07)
+scale = Vector2(1.6, 1.6)
+shadow_enabled = true
+texture = ExtResource("3_81m33")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.126e-06, 2.38419e-06)
 scale = Vector2(0.218579, 0.241692)
@@ -19,7 +25,3 @@ texture = ExtResource("1_yr517")
 shape = SubResource("CircleShape2D_5k6oi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("3_81m33")

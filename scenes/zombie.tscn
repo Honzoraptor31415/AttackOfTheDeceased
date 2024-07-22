@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://gr71mncd48k0"]
+
+[ext_resource type="Script" path="res://scripts/zombie.gd" id="1_2ib2v"]
+[ext_resource type="Texture2D" uid="uid://bta6abi7bnlwb" path="res://assets/zombie.png" id="1_a8mth"]
+[ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="2_mbuas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2m1i5"]
+radius = 39.0128
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab17q"]
+radius = 296.061
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_2ib2v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.126e-06, 2.38419e-06)
+scale = Vector2(0.218579, 0.241692)
+texture = ExtResource("1_a8mth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2m1i5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.7, 0.7)
+color = Color(0.741176, 0, 0.0705882, 1)
+texture = ExtResource("2_mbuas")
+
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ab17q")
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
