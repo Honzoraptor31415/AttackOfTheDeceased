@@ -40,6 +40,9 @@ offset_bottom = 40.0
 [node name="Label" type="Label" parent="CenterContainer"]
 light_mask = 16
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 22
 text = "Score: 0"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

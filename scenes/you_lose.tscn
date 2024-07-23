@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://vf8wi1t4tyr5"]
+
+[ext_resource type="Texture2D" uid="uid://tviuqfuewo6q" path="res://assets/dirt-ground.png" id="1_sa70n"]
+[ext_resource type="PackedScene" uid="uid://gr71mncd48k0" path="res://scenes/zombie.tscn" id="2_oi3k6"]
+[ext_resource type="PackedScene" uid="uid://bo6xbwcwjxm1f" path="res://scenes/tree.tscn" id="2_r3euf"]
+[ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="4_x17su"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xmg6"]
+texture = ExtResource("1_sa70n")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gjoc3"]
+tile_size = Vector2i(200, 200)
+sources/0 = SubResource("TileSetAtlasSource_0xmg6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qf8f"]
+size = Vector2(1163, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyr7s"]
+size = Vector2(837.5, 90)
+
+[node name="YouLoseScreen" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_gjoc3")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 131076, 0, 0, 196612, 0, 0, 196613, 0, 0, 196611, 0, 0, 196610, 0, 0, 196609, 0, 0, 196608, 0, 0, 262143, 0, 0, 196607, 0, 0, 131071, 0, 0, 65535, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, 65540, 0, 0, 65539, 0, 0, 65538, 0, 0, 65537, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0)
+
+[node name="Zombie" parent="." instance=ExtResource("2_oi3k6")]
+position = Vector2(555, 304)
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("2_r3euf")]
+
+[node name="Tree2" parent="Trees" instance=ExtResource("2_r3euf")]
+position = Vector2(147, 427)
+rotation = -1.59698
+scale = Vector2(1.1, 1.1)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("2_r3euf")]
+position = Vector2(977, 400)
+rotation = -3.08923
+
+[node name="Tree6" parent="Trees" instance=ExtResource("2_r3euf")]
+position = Vector2(444, 66)
+rotation = -3.08923
+
+[node name="Tree4" parent="Trees" instance=ExtResource("2_r3euf")]
+position = Vector2(948, 142)
+rotation = -0.308923
+scale = Vector2(0.7, 0.7)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("2_r3euf")]
+position = Vector2(629, 551)
+rotation = -0.308923
+scale = Vector2(0.9, 0.9)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+clip_contents = true
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PointLight2D" type="PointLight2D" parent="CenterContainer"]
+position = Vector2(577, 326)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("4_x17su")
+
+[node name="Texts" type="Node2D" parent="CenterContainer"]
+
+[node name="Label2" type="Label" parent="CenterContainer/Texts"]
+offset_left = 432.0
+offset_top = 312.0
+offset_right = 719.0
+offset_bottom = 357.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 27
+theme_override_font_sizes/font_size = 30
+text = "A zombie killed you."
+
+[node name="Label" type="Label" parent="CenterContainer/Texts"]
+offset_left = 467.0
+offset_top = 236.0
+offset_right = 685.0
+offset_bottom = 308.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 50
+text = "You lose!"
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(571.5, -42)
+shape = SubResource("RectangleShape2D_8qf8f")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(578, 694)
+shape = SubResource("RectangleShape2D_8qf8f")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(1196, 269.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lyr7s")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(-1220, 58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(1196, 269.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lyr7s")

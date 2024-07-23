@@ -11,13 +11,16 @@ const min_y = -1990
 const max_y = 1406
 
 func _ready():
-	# place 10 trees around the map randomly
-	for i in range(10):
+	for i in range(15):
 		var tree_instance = tree_scene.instantiate()
 		tree_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
+		tree_instance.rotation = rng.randi_range(0, 360)
+		
+		var random_scale = rng.randf_range(0.6, 1.1)
+		tree_instance.scale.x = random_scale
+		tree_instance.scale.y = random_scale
 		add_child(tree_instance)
 
-	# place 10 zombies around the map randomly
 	for i in range(10):
 		var zombie_instance = zombie_scene.instantiate()
 		zombie_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))

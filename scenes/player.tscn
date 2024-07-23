@@ -38,3 +38,9 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_yg5gu")
 
 [node name="UI" parent="." instance=ExtResource("4_kfck4")]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
