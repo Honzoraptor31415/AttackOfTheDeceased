@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo6xbwcwjxm1f"]
+
+[ext_resource type="Texture2D" uid="uid://c5twg706iw2lr" path="res://assets/tree.png" id="1_fk8pa"]
+
+[node name="Tree" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fk8pa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(88, 138, 86, 45, 167, -4, 83, -50, 82, -144, -2, -94, -87, -140, -84, -48, -166, 4, -83, 48, -80, 144, 2, 94)
