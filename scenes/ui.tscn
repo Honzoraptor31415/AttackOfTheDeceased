@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqvshluw7ev18"]
+[gd_scene load_steps=5 format=3 uid="uid://dqvshluw7ev18"]
 
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="1_iy8jp"]
+
+[sub_resource type="Theme" id="Theme_ag1rg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nmo7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mugyw"]
+bg_color = Color(0.733333, 0.0627451, 0.172549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.541176)
+shadow_size = 3
 
 [node name="UI" type="CanvasLayer"]
 
@@ -21,8 +49,11 @@ range_item_cull_mask = 16
 texture = ExtResource("1_iy8jp")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 141.0
-offset_top = 566.0
-offset_right = 1039.0
-offset_bottom = 645.0
-step = 1.0
+offset_left = 418.0
+offset_top = 615.0
+offset_right = 752.0
+offset_bottom = 643.0
+theme = SubResource("Theme_ag1rg")
+theme_override_styles/background = SubResource("StyleBoxFlat_0nmo7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mugyw")
+show_percentage = false

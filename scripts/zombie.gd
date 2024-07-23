@@ -7,17 +7,21 @@ var is_player_in_attack_area = false
 
 const damage = 5
 
-@onready var movement_timer = $MovementTimer
 @onready var player = $/root/Main/Player
 
+@export var health = 100
+
 func _ready():
-	pass
+	$MovementTimer.wait_time = rng.randf_range(1, 5)
 
 func _physics_process(_delta):
 	if(is_player_nearby):
 		look_at(player.position)
 		velocity = position.direction_to(player.position) * speed
 	move_and_slide()
+	
+	if(health == 0):
+		queue_free()
 
 func _on_movement_timer_timeout():
 	if(not is_player_nearby):
@@ -26,13 +30,11 @@ func _on_movement_timer_timeout():
 func _on_area_2d_body_entered(body):
 	if(body == player):
 		is_player_nearby = true
-		player.health -= 1
 
 func _on_area_2d_body_exited(body):
 	if(body == player):
 		is_player_nearby = false
 		go_to_random_position()
-
 
 func go_to_random_position():
 	var random_vector = Vector2(rng.randf_range(-100.0, 100.0), rng.randf_range(-100.0, 100.0))

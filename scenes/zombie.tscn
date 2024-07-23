@@ -14,7 +14,7 @@ radius = 296.061
 radius = 39.0
 height = 92.0
 
-[node name="Zombie" type="CharacterBody2D"]
+[node name="Zombie" type="CharacterBody2D" groups=["zombies"]]
 script = ExtResource("1_2ib2v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
