@@ -2,9 +2,9 @@
 <circle cx="293.5" cy="68.5" r="50" fill="#103100" stroke="black" stroke-width="37"/>
 <circle cx="293.5" cy="241.5" r="50" fill="#103100" stroke="black" stroke-width="37"/>
 <circle cx="155" cy="155" r="136.5" fill="#105400" stroke="black" stroke-width="37"/>
-<circle cx="190" cy="112" r="25" fill="#D9D9D9"/>
-<circle cx="190" cy="198" r="25" fill="#D9D9D9"/>
-<circle cx="202.5" cy="197.5" r="12.5" fill="black"/>
-<circle cx="202.5" cy="112.5" r="12.5" fill="black"/>
+<circle cx="190" cy="112" r="25" fill="white"/>
+<circle cx="190" cy="198" r="25" fill="white"/>
+<circle cx="196.5" cy="208.5" r="12.5" fill="black"/>
+<circle cx="189.5" cy="99.5" r="12.5" fill="black"/>
 <path d="M239 134L239 180" stroke="black" stroke-width="20" stroke-linecap="round"/>
 </svg>

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqvshluw7ev18"]
+
+[ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="1_iy8jp"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+light_mask = 16
+offset_right = 1152.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+light_mask = 16
+layout_mode = 2
+text = "Score: 0"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(581, 353)
+scale = Vector2(6, 6)
+range_item_cull_mask = 16
+texture = ExtResource("1_iy8jp")
