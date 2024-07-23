@@ -14,7 +14,7 @@ func get_input():
 	velocity = input_direction * speed
 
 func _input(event):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("attack"):
 		shoot()
 
 func _physics_process(_delta):

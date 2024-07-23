@@ -22,8 +22,9 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 	if(health <= 0):
-		player.score += 1
-		queue_free()
+		var tween = get_tree().create_tween()
+		tween.tween_property($Sprite2D, "scale", Vector2(), 0.2)
+		tween.tween_callback(die)
 
 func _on_movement_timer_timeout():
 	if(not is_player_nearby):
@@ -51,7 +52,10 @@ func _on_attack_area_body_exited(body):
 	if(body == player):
 		is_player_in_attack_area = false
 
-
 func _on_attack_timer_timeout():
 	if(is_player_in_attack_area):
 		player.health -= damage
+
+func die():
+	player.score += 1
+	queue_free()
