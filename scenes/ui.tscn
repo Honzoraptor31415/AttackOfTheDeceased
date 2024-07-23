@@ -35,7 +35,7 @@ shadow_size = 3
 [node name="CenterContainer" type="CenterContainer" parent="."]
 light_mask = 16
 offset_right = 1152.0
-offset_bottom = 40.0
+offset_bottom = 79.0
 
 [node name="Label" type="Label" parent="CenterContainer"]
 light_mask = 16
@@ -59,4 +59,5 @@ offset_bottom = 643.0
 theme = SubResource("Theme_ag1rg")
 theme_override_styles/background = SubResource("StyleBoxFlat_0nmo7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mugyw")
+value = 100.0
 show_percentage = false
