@@ -16,7 +16,6 @@ func _ready():
 		var tree_instance = tree.instantiate()
 		add_child(tree_instance)
 		tree_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
-		print(i)
 	
 	# place 10 zombies around the map randomly
 	for i in range(10):

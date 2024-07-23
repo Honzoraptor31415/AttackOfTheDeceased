@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gr71mncd48k0"]
+[gd_scene load_steps=7 format=3 uid="uid://gr71mncd48k0"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_2ib2v"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="2_mbuas"]
@@ -9,6 +9,10 @@ radius = 39.0128
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ab17q"]
 radius = 296.061
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuw56"]
+radius = 39.0
+height = 92.0
 
 [node name="Zombie" type="CharacterBody2D"]
 script = ExtResource("1_2ib2v")
@@ -25,9 +29,9 @@ shape = SubResource("CircleShape2D_2m1i5")
 wait_time = 6.0
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="NearbyArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearbyArea"]
 shape = SubResource("CircleShape2D_ab17q")
 
 [node name="Eyes" type="Node2D" parent="."]
@@ -46,6 +50,19 @@ color = Color(0.741176, 0, 0.0705882, 1)
 texture = ExtResource("2_mbuas")
 texture_scale = 0.5
 
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(22, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xuw56")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="NearbyArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="NearbyArea" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
