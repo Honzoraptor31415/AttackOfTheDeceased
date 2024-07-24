@@ -68,7 +68,7 @@ func die():
 
 	queue_free()
 
-
 func go_to_player():
-	look_at(player.position)
-	velocity = position.direction_to(player.position) * speed
+	if get_parent().name == "Main":
+		look_at(player.position)
+		velocity = position.direction_to(player.position) * speed

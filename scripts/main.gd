@@ -62,8 +62,6 @@ func _on_med_kit_spawn_timer_timeout():
 		if child.is_in_group("medkits"):
 			number_of_medkits += 1
 	
-	print(number_of_medkits) 
-	
 	if(number_of_medkits < 30):
 		var med_kit_instance = med_kit_scene.instantiate()
 		med_kit_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
