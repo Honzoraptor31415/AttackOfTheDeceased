@@ -4,38 +4,44 @@ var rng = RandomNumberGenerator.new()
 var speed = 300
 var is_player_nearby = false
 var is_player_in_attack_area = false
-
-const damage = 5
+var damage = 5
 
 @onready var player = $/root/Main/Player
+@onready var main = $/root/Main
 
 @export var health = 100
 
 func _ready():
 	$MovementTimer.wait_time = rng.randf_range(1, 5)
+	if get_parent().name == "Main":
+		main.zombie_count += 1
+		damage = damage + main.wave_number / 2
+		speed = speed + main.wave_number * 20
 	go_to_random_position()
 
 func _physics_process(_delta):
-	if(is_player_nearby):
-		look_at(player.position)
-		velocity = position.direction_to(player.position) * speed
+	if is_player_nearby:
+		go_to_player()
 	move_and_slide()
 	
-	if(health <= 0):
+	if health <= 0:
 		var tween = get_tree().create_tween()
 		tween.tween_property($Sprite2D, "scale", Vector2(), 0.2)
 		tween.tween_callback(die)
 
 func _on_movement_timer_timeout():
-	if(not is_player_nearby):
-		go_to_random_position()
+	if not is_player_nearby:
+		if rng.randi_range(0, 4) == 3:
+			go_to_player()
+		else:
+			go_to_random_position()
 
 func _on_area_2d_body_entered(body):
-	if(body == player):
+	if body == player:
 		is_player_nearby = true
 
 func _on_area_2d_body_exited(body):
-	if(body == player):
+	if body == player:
 		is_player_nearby = false
 		go_to_random_position()
 
@@ -45,17 +51,24 @@ func go_to_random_position():
 	velocity = position.direction_to(random_vector) * speed
 
 func _on_attack_area_body_entered(body):
-	if(body == player):
+	if body == player:
 		is_player_in_attack_area = true
 
 func _on_attack_area_body_exited(body):
-	if(body == player):
+	if body == player:
 		is_player_in_attack_area = false
 
 func _on_attack_timer_timeout():
-	if(is_player_in_attack_area):
+	if is_player_in_attack_area:
 		player.health -= damage
 
 func die():
 	player.score += 1
+	main.zombie_count -= 1
+
 	queue_free()
+
+
+func go_to_player():
+	look_at(player.position)
+	velocity = position.direction_to(player.position) * speed

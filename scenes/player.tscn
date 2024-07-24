@@ -10,6 +10,7 @@
 radius = 36.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_y0f54")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -40,7 +41,7 @@ shape = SubResource("CircleShape2D_yg5gu")
 [node name="UI" parent="." instance=ExtResource("4_kfck4")]
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

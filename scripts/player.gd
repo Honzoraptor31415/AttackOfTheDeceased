@@ -22,13 +22,14 @@ func _physics_process(_delta):
 	move_and_slide()
 	look_at(get_global_mouse_position())
 	health_bar.value = health
-	$UI/CenterContainer/Label.text = "Score: " + str(score)
 	
-	if(health <= 0):
+	$UI/CenterContainer/Grid/ScoreIndicator.text = "Score: " + str(score)
+	
+	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/you_lose.tscn")
 
 func shoot():
-	if(can_attack):
+	if can_attack:
 		var bullet_instance = bullet_scene.instantiate()
 		bullet_instance.position = position
 		bullet_instance.transform = transform

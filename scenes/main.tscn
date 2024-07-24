@@ -86,3 +86,9 @@ position = Vector2(-535, -196)
 scale = Vector2(27, 27)
 editor_only = true
 texture = ExtResource("6_56xtj")
+
+[node name="MedKitSpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="MedKitSpawnTimer" to="." method="_on_med_kit_spawn_timer_timeout"]

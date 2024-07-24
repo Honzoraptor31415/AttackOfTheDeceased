@@ -32,19 +32,6 @@ shadow_size = 3
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-light_mask = 16
-offset_right = 1152.0
-offset_bottom = 79.0
-
-[node name="Label" type="Label" parent="CenterContainer"]
-light_mask = 16
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 22
-text = "Score: 0"
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(581, 353)
 scale = Vector2(6, 6)
@@ -61,3 +48,36 @@ theme_override_styles/background = SubResource("StyleBoxFlat_0nmo7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mugyw")
 value = 100.0
 show_percentage = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 40.0
+
+[node name="Grid" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 60
+columns = 3
+
+[node name="ScoreIndicator" type="Label" parent="CenterContainer/Grid"]
+light_mask = 16
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 22
+text = "Score: 0"
+
+[node name="WaveIndicator" type="Label" parent="CenterContainer/Grid"]
+light_mask = 16
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 22
+text = "Wawe: 1"
+
+[node name="ZombiesCountIndicator" type="Label" parent="CenterContainer/Grid"]
+light_mask = 16
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 22
+text = "Zombies remaining: ?"
