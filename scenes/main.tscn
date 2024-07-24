@@ -21,16 +21,16 @@ tile_size = Vector2i(200, 200)
 sources/0 = SubResource("TileSetAtlasSource_tolxj")
 sources/1 = SubResource("TileSetAtlasSource_4bw3f")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwsb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rwl5"]
 size = Vector2(202, 3800)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4unk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w4fq"]
 size = Vector2(202, 3800)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxka1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t31rj"]
 size = Vector2(202, 3800)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5xsu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ohgg"]
 size = Vector2(202, 3800)
 
 [node name="Main" type="Node2D"]
@@ -51,35 +51,35 @@ color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls" groups=["ignore_trees"]]
 position = Vector2(349, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(951, -304)
-shape = SubResource("RectangleShape2D_6nwsb")
+shape = SubResource("RectangleShape2D_2rwl5")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls" groups=["ignore_trees"]]
 position = Vector2(349, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
 position = Vector2(-2849, -304)
-shape = SubResource("RectangleShape2D_d4unk")
+shape = SubResource("RectangleShape2D_5w4fq")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls" groups=["ignore_trees"]]
 position = Vector2(349, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 position = Vector2(-1050, 1496)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_wxka1")
+shape = SubResource("RectangleShape2D_t31rj")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls" groups=["ignore_trees"]]
 position = Vector2(349, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
 position = Vector2(-850, -2104)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_i5xsu")
+shape = SubResource("RectangleShape2D_2ohgg")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-535, -196)

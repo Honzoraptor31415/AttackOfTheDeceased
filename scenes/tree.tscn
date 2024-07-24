@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo6xbwcwjxm1f"]
+[gd_scene load_steps=3 format=3 uid="uid://bo6xbwcwjxm1f"]
 
 [ext_resource type="Texture2D" uid="uid://c5twg706iw2lr" path="res://assets/tree.png" id="1_fk8pa"]
+[ext_resource type="Script" path="res://scripts/tree.gd" id="1_vx8r1"]
 
-[node name="Tree" type="AnimatableBody2D"]
+[node name="Tree" type="AnimatableBody2D" groups=["ignore_trees"]]
+script = ExtResource("1_vx8r1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -10,3 +12,11 @@ texture = ExtResource("1_fk8pa")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(88, 138, 86, 45, 167, -4, 83, -50, 82, -144, -2, -94, -87, -140, -84, -48, -166, 4, -83, 48, -80, 144, 2, 94)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(0.9, 0.9)
+polygon = PackedVector2Array(88, 138, 86, 45, 167, -4, 83, -50, 82, -144, -2, -94, -87, -140, -84, -48, -166, 4, -83, 48, -80, 144, 2, 94)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

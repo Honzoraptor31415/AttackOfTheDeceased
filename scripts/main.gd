@@ -13,10 +13,10 @@ var rng = RandomNumberGenerator.new()
 var is_wave_being_created = false
 var zombies_per_wave = 15
 
-const min_x = -2385
-const max_x = 1213
-const min_y = -1990
-const max_y = 1406
+@export var min_x = -2385
+@export var max_x = 1213
+@export var min_y = -1990
+@export var max_y = 1406
 
 func _ready():
 	for i in range(15):

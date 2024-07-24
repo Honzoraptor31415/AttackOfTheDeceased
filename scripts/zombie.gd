@@ -24,6 +24,9 @@ func _ready():
 			speed *= 0.5
 			scale *= 1.5
 			$NearbyArea/CollisionShape2D.scale = Vector2(3, 3)
+		
+		if main.wave_number == 1:
+			health = 75
 
 	go_to_random_position()
 
@@ -38,11 +41,14 @@ func _physics_process(_delta):
 		tween.tween_callback(die)
 
 func _on_movement_timer_timeout():
-	if not is_player_nearby:
-		if rng.randi_range(0, 4) == 3:
-			go_to_player()
-		else:
-			go_to_random_position()
+	if main.zombie_count <= 10:
+		go_to_player() 
+	else:
+		if not is_player_nearby:
+			if rng.randi_range(0, 4) == 3:
+				go_to_player()
+			else:
+				go_to_random_position()
 
 func _on_area_2d_body_entered(body):
 	if body == player:
