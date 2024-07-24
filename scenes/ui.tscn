@@ -72,7 +72,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 22
-text = "Wawe: 1"
+text = "Wave: 1"
 
 [node name="ZombiesCountIndicator" type="Label" parent="CenterContainer/Grid"]
 light_mask = 16

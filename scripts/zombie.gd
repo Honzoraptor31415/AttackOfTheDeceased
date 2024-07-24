@@ -15,8 +15,16 @@ func _ready():
 	$MovementTimer.wait_time = rng.randf_range(1, 5)
 	if get_parent().name == "Main":
 		main.zombie_count += 1
-		damage = damage + main.wave_number / 2
-		speed = speed + main.wave_number * 20
+		damage += main.wave_number / 2
+		speed += main.wave_number * 20
+		health += main.wave_number * 3
+		$NearbyArea/CollisionShape2D.scale = Vector2(scale.x + main.wave_number / 4, scale.y + main.wave_number / 4)
+		if rng.randi_range(0, 4) == 3 and main.wave_number >= 3:
+			damage *= 3
+			speed *= 0.5
+			scale *= 1.5
+			$NearbyArea/CollisionShape2D.scale = Vector2(3, 3)
+
 	go_to_random_position()
 
 func _physics_process(_delta):

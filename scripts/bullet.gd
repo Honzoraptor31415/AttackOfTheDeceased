@@ -1,12 +1,13 @@
 extends Area2D
 
 const speed = 700
-const damage = 10
+var damage = 10
 
 func _ready():
 	var tween = get_tree().create_tween()
 	$Sprite2D.scale = Vector2(0, 0)
 	tween.tween_property($Sprite2D, "scale", Vector2(0.1, 0.1), 0.2)
+	damage += $/root/Main/Player.score * 1.5
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

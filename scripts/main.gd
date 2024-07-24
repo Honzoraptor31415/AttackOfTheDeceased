@@ -33,7 +33,7 @@ func _ready():
 
 func _physics_process(_delta):
 	zombie_count_indicator.text = "Zombies remaining: " + str(zombie_count)
-	wave_number_indicator.text = "Wawe: " + str(wave_number)
+	wave_number_indicator.text = "Wave: " + str(wave_number)
 	
 	if zombie_count == 0:
 		new_wave()
@@ -49,7 +49,9 @@ func new_wave():
 		return
 	
 	is_wave_being_created = true
-	zombies_per_wave += 10
+	if zombies_per_wave < 30:
+		zombies_per_wave += 10
+
 	wave_number += 1
 	spawn_zombies()
 	
