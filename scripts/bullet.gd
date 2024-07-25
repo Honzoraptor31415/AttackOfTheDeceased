@@ -1,11 +1,16 @@
 extends Area2D
 
+@onready var rng = RandomNumberGenerator.new()
+
 const speed = 700
 
 func _ready():
 	var tween = get_tree().create_tween()
 	$Sprite2D.scale = Vector2(0, 0)
 	tween.tween_property($Sprite2D, "scale", Vector2(0.1, 0.1), 0.2)
+	
+	$Shot.volume_db = rng.randf_range(-10, 0)
+	$Shot.pitch_scale = rng.randf_range(0.7, 1)
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

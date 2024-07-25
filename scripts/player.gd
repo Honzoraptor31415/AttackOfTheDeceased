@@ -10,6 +10,7 @@ var can_attack = true
 
 @onready var health_bar = $UI/HealthBar
 @onready var bullet_scene = preload("res://scenes/bullet.tscn")
+@onready var rng = RandomNumberGenerator.new()
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -26,6 +27,11 @@ func _physics_process(_delta):
 	health_bar.value = health
 	
 	$UI/CenterContainer/Grid/GoldIndicator.text = "Gold: " + str(gold)
+	
+	if velocity.length() > 0 and $WalkingSoundTimer.time_left <= 0:
+		$Walking.pitch_scale = rng.randf_range(0.85, 1.3)
+		$Walking.play()
+		$WalkingSoundTimer.start()
 	
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/you_lose.tscn")

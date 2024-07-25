@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxofgmgaqowfg"]
+[gd_scene load_steps=9 format=3 uid="uid://cxofgmgaqowfg"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_nlrcl"]
 [ext_resource type="Texture2D" uid="uid://cmhknj3arvi66" path="res://assets/bullet.png" id="2_iqo7t"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="3_mwhcj"]
+[ext_resource type="AudioStream" uid="uid://h8556orhvq2j" path="res://assets/shoot.wav" id="4_j7i00"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xtvx1"]
 radius = 13.0384
@@ -69,6 +70,10 @@ autoplay = "lose_shine"
 libraries = {
 "": SubResource("AnimationLibrary_6byvj")
 }
+
+[node name="Shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_j7i00")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]

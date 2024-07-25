@@ -37,7 +37,7 @@ func _ready():
 				speed += 300
 				worth = 2
 				$NearbyArea.scale = Vector2(5, 5)
-			if random_number == 1:
+			elif random_number == 1:
 				scale = Vector2(1.3, 1.3)
 				damage += 20
 				$AttackTimer.wait_time = 2
@@ -50,6 +50,7 @@ func _ready():
 	$ScreamTimer.wait_time = rng.randi_range(10, 30)
 	$Scream.volume_db = rng.randf_range(-20, -10)
 	$Scream.pitch_scale = rng.randf_range(0.25, 1)
+	$Scream.play()
 
 	go_to_random_position()
 
@@ -120,4 +121,3 @@ func go_to_player():
 
 func _on_scream_timer_timeout():
 	$Scream.play()
-	print("Scream")

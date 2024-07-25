@@ -142,9 +142,12 @@ func buy_better_wand():
 	
 func buy_med_kit():
 	if $Player.gold >= med_kit_item_prize:
-		$Player.gold -= med_kit_item_prize
-		$Player.med_kit_count += 1
-		set_notification("+1 Medkit")
+		if $Player.med_kit_count < 30:
+			$Player.gold -= med_kit_item_prize
+			$Player.med_kit_count += 1
+			set_notification("+1 Medkit")
+		else:
+			set_notification("You have too many medkits")
 	else:
 		set_notification("Not enough gold")
 
