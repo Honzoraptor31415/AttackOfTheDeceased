@@ -28,7 +28,7 @@ texture = ExtResource("3_81m33")
 [node name="Wand" type="Sprite2D" parent="."]
 position = Vector2(62, 2)
 rotation = 0.935496
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_tndlh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

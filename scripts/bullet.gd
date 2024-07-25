@@ -1,7 +1,6 @@
 extends Area2D
 
 const speed = 700
-var damage = 10
 
 func _ready():
 	var tween = get_tree().create_tween()
@@ -16,7 +15,7 @@ func _on_end_timer_timeout():
 
 func _on_body_entered(body):
 	if body.is_in_group("zombies"):
-		body.health -= damage
+		body.health -= $/root/Main/Player.damage
 		queue_free()
 	
 	if body.is_in_group("destroy_bullets"):

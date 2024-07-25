@@ -6,7 +6,7 @@ var can_player_open = false
 var is_open = false
 
 func _input(event):
-	if can_player_open and event.is_action_pressed("use"):
+	if can_player_open and event.is_action_pressed("interact"):
 		if is_open:
 			var tween = get_tree().create_tween()
 			tween.tween_property(self, "rotation_degrees", rotation_degrees - 90, 0.2)

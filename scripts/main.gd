@@ -2,9 +2,14 @@ extends Node2D
 
 @onready var tree_scene = preload("res://scenes/tree.tscn")
 @onready var zombie_scene = preload("res://scenes/zombie.tscn")
-@onready var med_kit_scene = preload("res://scenes/med_kit.tscn")
 @onready var zombie_count_indicator = $Player/UI/CenterContainer/Grid/ZombiesCountIndicator
 @onready var wave_number_indicator = $Player/UI/CenterContainer/Grid/WaveIndicator
+@onready var shop_ui = $Player/UI/ShopUIContainer
+@onready var buy_wand_button = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/WandItem/Button
+@onready var buy_med_kit_button = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/MedKitItem/Button
+@onready var wand_item_label = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/WandItem/Label
+@onready var med_kit_item_label = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/MedKitItem/Label
+@onready var med_kit_count_indicator = $Player/UI/Control/MedKitNumberIndicator
 
 @export var zombie_count = 0
 @export var wave_number = 1
@@ -18,10 +23,15 @@ extends Node2D
 	end_x = 515,
 	end_y = 495
 }
+@export var is_shop_ui_open = false
+@export var med_kit_item_prize = 7
 
 var rng = RandomNumberGenerator.new()
 var is_wave_being_created = false
 var zombies_per_wave = 15
+var is_player_near_cashier = false
+var is_mouse_hovering_cashier = false
+var wand_item_prize = 20
 
 func _ready():
 	for i in range(15):
@@ -33,6 +43,9 @@ func _ready():
 		tree_instance.scale.x = random_scale
 		tree_instance.scale.y = random_scale
 		add_child(tree_instance)
+	
+	buy_wand_button.pressed.connect(buy_better_wand)
+	buy_med_kit_button.pressed.connect(buy_med_kit)
 
 	spawn_zombies()
 
@@ -42,6 +55,10 @@ func _physics_process(_delta):
 	
 	if zombie_count == 0:
 		new_wave()
+		
+	wand_item_label.text = "Better wand: " + str(wand_item_prize) + " Gold"
+	med_kit_item_label.text = "Medkit: " + str(med_kit_item_prize) + " Gold"
+	med_kit_count_indicator.text = str($Player.med_kit_count)
 
 func spawn_zombies():
 	for i in range(zombies_per_wave):
@@ -62,17 +79,6 @@ func new_wave():
 	
 	is_wave_being_created = false
 
-func _on_med_kit_spawn_timer_timeout():
-	var number_of_medkits = 0
-	for child in get_children():
-		if child.is_in_group("medkits"):
-			number_of_medkits += 1
-	
-	if(number_of_medkits < 30):
-		var med_kit_instance = med_kit_scene.instantiate()
-		med_kit_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
-		add_child(med_kit_instance)
-
 func get_safe_random_x():
 	var x = rng.randi_range(min_x, max_x)
 	if x >= shop_coordinates.start_x and x <= shop_coordinates.end_x:
@@ -84,3 +90,41 @@ func get_safe_random_y():
 	if y >= shop_coordinates.start_y and y <= shop_coordinates.end_y:
 		return get_safe_random_y()
 	return y
+
+func _on_cashier_mouse_entered():
+	$Shop/Cashier/HoverCircle.visible = true
+	is_mouse_hovering_cashier = true
+	
+func _on_cashier_mouse_exited():
+	$Shop/Cashier/HoverCircle.visible = false
+	is_mouse_hovering_cashier = false
+
+func _on_area_2d_body_entered(body):
+	if body == $Player:
+		is_player_near_cashier = true
+
+func _on_area_2d_body_exited(body):
+	if body == $Player:
+		is_player_near_cashier = false
+		shop_ui.visible = false
+		is_shop_ui_open = false
+
+func _input(event):
+	if event.is_action_pressed("interact") and is_player_near_cashier and is_mouse_hovering_cashier:
+		shop_ui.visible = true
+		is_shop_ui_open = true
+		
+	if event.is_action_pressed("escape") and is_shop_ui_open:
+		shop_ui.visible = false 
+		is_shop_ui_open = false
+
+func buy_better_wand():
+	if $Player.gold >= wand_item_prize:
+		$Player.gold -= wand_item_prize
+		$Player.damage += 5
+		wand_item_prize += 20
+	
+func buy_med_kit():
+	if $Player.gold >= med_kit_item_prize:
+		$Player.gold -= med_kit_item_prize
+		$Player.med_kit_count += 1

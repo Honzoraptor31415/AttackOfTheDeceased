@@ -73,7 +73,7 @@ func _on_attack_timer_timeout():
 		player.health -= damage
 
 func die():
-	player.score += 1
+	player.gold += 1
 	main.zombie_count -= 1
 
 	queue_free()
