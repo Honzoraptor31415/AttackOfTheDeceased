@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://gr71mncd48k0"]
+[gd_scene load_steps=10 format=3 uid="uid://gr71mncd48k0"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_2ib2v"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="2_mbuas"]
 [ext_resource type="Texture2D" uid="uid://crd6yvjxmeheb" path="res://assets/zombie.svg" id="2_xrgvd"]
+[ext_resource type="AudioStream" uid="uid://t1ooc2nqtmk5" path="res://assets/zombie-scream.mp3" id="4_a7prq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2m1i5"]
 radius = 39.0128
@@ -105,9 +106,19 @@ theme_override_styles/background = SubResource("StyleBoxFlat_c3a4m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_a0mec")
 value = 100.0
 
+[node name="Scream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a7prq")
+volume_db = -10.0
+pitch_scale = 0.2
+
+[node name="ScreamTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="body_entered" from="NearbyArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="NearbyArea" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ScreamTimer" to="." method="_on_scream_timer_timeout"]

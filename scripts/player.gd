@@ -18,10 +18,6 @@ func get_input():
 func _input(event):
 	if event.is_action_pressed("attack") and not $/root/Main.is_shop_ui_open:
 		shoot()
-	
-	if event.is_action_pressed("heal") and med_kit_count > 0 and health <= 70:
-		health += 30
-		med_kit_count -= 1
 
 func _physics_process(_delta):
 	get_input()

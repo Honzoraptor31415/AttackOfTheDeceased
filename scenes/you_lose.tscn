@@ -78,27 +78,26 @@ clip_contents = true
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Texts" type="Node2D" parent="CenterContainer"]
+[node name="Texts" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="CenterContainer/Texts"]
-offset_left = 467.0
-offset_top = 236.0
-offset_right = 685.0
-offset_bottom = 308.0
+layout_mode = 2
+theme_override_colors/font_color = Color(0.823529, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 40
 theme_override_font_sizes/font_size = 50
 text = "You lose!"
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CenterContainer/Texts"]
-offset_left = 415.0
-offset_top = 312.0
-offset_right = 721.0
-offset_bottom = 357.0
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 27
 theme_override_font_sizes/font_size = 30
 text = "Press enter for menu"
+horizontal_alignment = 1
 
 [node name="Walls" type="Node2D" parent="."]
 

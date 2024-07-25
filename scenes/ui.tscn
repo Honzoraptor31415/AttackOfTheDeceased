@@ -124,6 +124,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
 offset_left = 784.0
 offset_top = 615.0
 offset_right = 837.0
@@ -271,7 +272,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 20
-text = "Medkit: 7 Gold"
+text = "Medkit: 5 Gold"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="ShopUIContainer/Control/Panel/HBoxContainer/MedKitItem"]
@@ -283,3 +284,21 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6odda")
 theme_override_styles/hover = SubResource("StyleBoxFlat_k2jkl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_d7iuc")
 text = "Buy"
+
+[node name="Notification" type="Label" parent="."]
+light_mask = 16
+z_index = 3
+z_as_relative = false
+offset_left = 169.0
+offset_top = 310.0
+offset_right = 1003.0
+offset_bottom = 338.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Notification"]
+wait_time = 1.5
+one_shot = true

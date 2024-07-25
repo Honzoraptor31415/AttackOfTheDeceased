@@ -76,6 +76,10 @@ heal={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_5="UI"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -10,6 +10,8 @@ extends Node2D
 @onready var wand_item_label = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/WandItem/Label
 @onready var med_kit_item_label = $Player/UI/ShopUIContainer/Control/Panel/HBoxContainer/MedKitItem/Label
 @onready var med_kit_count_indicator = $Player/UI/Control/MedKitNumberIndicator
+@onready var notification_label = $Player/UI/Notification
+@onready var notification_timer = $Player/UI/Notification/Timer
 
 @export var zombie_count = 0
 @export var wave_number = 1
@@ -24,7 +26,7 @@ extends Node2D
 	end_y = 495
 }
 @export var is_shop_ui_open = false
-@export var med_kit_item_prize = 7
+@export var med_kit_item_prize = 5
 
 var rng = RandomNumberGenerator.new()
 var is_wave_being_created = false
@@ -48,6 +50,8 @@ func _ready():
 	buy_med_kit_button.pressed.connect(buy_med_kit)
 
 	spawn_zombies()
+	
+	notification_timer.timeout.connect(hide_notification)
 
 func _physics_process(_delta):
 	zombie_count_indicator.text = "Zombies remaining: " + str(zombie_count)
@@ -117,14 +121,38 @@ func _input(event):
 	if event.is_action_pressed("escape") and is_shop_ui_open:
 		shop_ui.visible = false 
 		is_shop_ui_open = false
+	
+	if event.is_action_pressed("heal"):
+		if $Player.med_kit_count > 0 and $Player.health <= 70:
+			$Player.health += 30
+			$Player.med_kit_count -= 1
+		elif $Player.med_kit_count > 0 and $Player.health > 70:
+			set_notification("Your health must be less than 70 to heal")
+		elif $Player.med_kit_count == 0:
+			set_notification("No medkits")
 
 func buy_better_wand():
 	if $Player.gold >= wand_item_prize:
 		$Player.gold -= wand_item_prize
 		$Player.damage += 5
 		wand_item_prize += 20
+		set_notification("Wand upgraded")
+	else:
+		set_notification("Not enough gold")
 	
 func buy_med_kit():
 	if $Player.gold >= med_kit_item_prize:
 		$Player.gold -= med_kit_item_prize
 		$Player.med_kit_count += 1
+		set_notification("+1 Medkit")
+	else:
+		set_notification("Not enough gold")
+
+func set_notification(text):
+	notification_label.text = text
+	notification_label.visible = true
+	notification_timer.start()
+	
+func hide_notification():
+	notification_label.visible = false
+	notification_label.text = ""

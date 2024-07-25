@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bim1g6fo6bps"]
+[gd_scene load_steps=33 format=3 uid="uid://bim1g6fo6bps"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_72jyo"]
 [ext_resource type="PackedScene" uid="uid://c7hin3g6hfkey" path="res://scenes/player.tscn" id="1_et7wi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://wgyqe4bqbotg" path="res://assets/table.png" id="8_a25t3"]
 [ext_resource type="Texture2D" uid="uid://dhcf3b1dw64ic" path="res://assets/cashier.svg" id="9_81lmd"]
 [ext_resource type="Texture2D" uid="uid://cq3b48a54nbg1" path="res://assets/white-circle.png" id="10_g04a2"]
+[ext_resource type="AudioStream" uid="uid://dx3xxxpx826cr" path="res://assets/scary-forest-sounds.mp3" id="11_gytt8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tolxj"]
 texture = ExtResource("1_qs56e")
@@ -253,6 +254,11 @@ texture = ExtResource("10_g04a2")
 position = Vector2(184, 92)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dihr0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gytt8")
+volume_db = -17.0
+autoplay = true
 
 [connection signal="mouse_entered" from="Shop/Cashier" to="." method="_on_cashier_mouse_entered"]
 [connection signal="mouse_exited" from="Shop/Cashier" to="." method="_on_cashier_mouse_exited"]
