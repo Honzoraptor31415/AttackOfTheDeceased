@@ -20,7 +20,6 @@ func _on_area_2d_body_entered(body):
 	if body == player:
 		can_player_open = true
 
-
 func _on_area_2d_body_exited(body):
 	if body == player:
 		can_player_open = false

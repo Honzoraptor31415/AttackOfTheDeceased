@@ -12,6 +12,12 @@ extends Node2D
 @export var max_x = 1213
 @export var min_y = -1990
 @export var max_y = 1406
+@export var shop_coordinates = {
+	start_x = -515,
+	start_y = -305,
+	end_x = 515,
+	end_y = 495
+}
 
 var rng = RandomNumberGenerator.new()
 var is_wave_being_created = false
@@ -20,7 +26,7 @@ var zombies_per_wave = 15
 func _ready():
 	for i in range(15):
 		var tree_instance = tree_scene.instantiate()
-		tree_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
+		tree_instance.position = Vector2(get_safe_random_x(), get_safe_random_y())
 		tree_instance.rotation = rng.randi_range(0, 360)
 		
 		var random_scale = rng.randf_range(0.6, 1.1)
@@ -40,7 +46,7 @@ func _physics_process(_delta):
 func spawn_zombies():
 	for i in range(zombies_per_wave):
 		var zombie_instance = zombie_scene.instantiate()
-		zombie_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
+		zombie_instance.position = Vector2(get_safe_random_x(), get_safe_random_y())
 		add_child(zombie_instance)
 
 func new_wave():
@@ -67,6 +73,14 @@ func _on_med_kit_spawn_timer_timeout():
 		med_kit_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
 		add_child(med_kit_instance)
 
-func _on_shop_area_body_entered(body):
-	if body.is_in_group("trees"):
-		body.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
+func get_safe_random_x():
+	var x = rng.randi_range(min_x, max_x)
+	if x >= shop_coordinates.start_x and x <= shop_coordinates.end_x:
+		return get_safe_random_x()
+	return x
+	
+func get_safe_random_y():
+	var y = rng.randi_range(min_y, max_y)
+	if y >= shop_coordinates.start_y and y <= shop_coordinates.end_y:
+		return get_safe_random_y()
+	return y
