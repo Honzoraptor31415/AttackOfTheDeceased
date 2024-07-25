@@ -15,24 +15,17 @@ func _ready():
 	$MovementTimer.wait_time = rng.randf_range(1, 5)
 	if get_parent().name == "Main":
 		main.zombie_count += 1
-		damage += main.wave_number / 2
-		speed += main.wave_number * 20
-		health += main.wave_number * 3
-		$NearbyArea/CollisionShape2D.scale = Vector2(scale.x + main.wave_number / 4, scale.y + main.wave_number / 4)
-		if rng.randi_range(0, 4) == 3 and main.wave_number >= 3:
-			damage *= 3
-			speed *= 0.5
-			scale *= 1.5
-			$NearbyArea/CollisionShape2D.scale = Vector2(3, 3)
-		
-		if main.wave_number == 1:
-			health = 75
+		# some organized logic needs to be done here
 
 	go_to_random_position()
 
 func _physics_process(_delta):
 	if is_player_nearby:
 		go_to_player()
+		
+	$HealthBarContainer.rotation = -1 * rotation
+	$HealthBarContainer/HealthBar.value = health
+		
 	move_and_slide()
 	
 	if health <= 0:
@@ -41,14 +34,17 @@ func _physics_process(_delta):
 		tween.tween_callback(die)
 
 func _on_movement_timer_timeout():
-	if main.zombie_count <= 10:
-		go_to_player() 
+	if get_parent().name == "Main":
+		if main.zombie_count <= 10:
+			go_to_player()
+		else:
+			if not is_player_nearby:
+				if rng.randi_range(0, 4) == 3:
+					go_to_player()
+				else:
+					go_to_random_position()
 	else:
-		if not is_player_nearby:
-			if rng.randi_range(0, 4) == 3:
-				go_to_player()
-			else:
-				go_to_random_position()
+		go_to_random_position()
 
 func _on_area_2d_body_entered(body):
 	if body == player:

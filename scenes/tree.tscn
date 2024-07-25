@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c5twg706iw2lr" path="res://assets/tree.png" id="1_fk8pa"]
 [ext_resource type="Script" path="res://scripts/tree.gd" id="1_vx8r1"]
 
-[node name="Tree" type="AnimatableBody2D" groups=["ignore_trees"]]
+[node name="Tree" type="AnimatableBody2D" groups=["destroy_bullets", "ignore_trees", "trees"]]
 script = ExtResource("1_vx8r1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

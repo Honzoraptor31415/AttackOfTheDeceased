@@ -23,7 +23,7 @@ func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 	health_bar.value = health
 	
-	$UI/CenterContainer/Grid/ScoreIndicator.text = "Score: " + str(score)
+	$UI/CenterContainer/Grid/GoldIndicator.text = "Gold: " + str(score)
 	
 	if health <= 0:
 		get_tree().change_scene_to_file("res://scenes/you_lose.tscn")

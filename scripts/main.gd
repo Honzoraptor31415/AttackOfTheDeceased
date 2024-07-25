@@ -8,15 +8,14 @@ extends Node2D
 
 @export var zombie_count = 0
 @export var wave_number = 1
-
-var rng = RandomNumberGenerator.new()
-var is_wave_being_created = false
-var zombies_per_wave = 15
-
 @export var min_x = -2385
 @export var max_x = 1213
 @export var min_y = -1990
 @export var max_y = 1406
+
+var rng = RandomNumberGenerator.new()
+var is_wave_being_created = false
+var zombies_per_wave = 15
 
 func _ready():
 	for i in range(15):
@@ -57,7 +56,6 @@ func new_wave():
 	
 	is_wave_being_created = false
 
-
 func _on_med_kit_spawn_timer_timeout():
 	var number_of_medkits = 0
 	for child in get_children():
@@ -68,3 +66,7 @@ func _on_med_kit_spawn_timer_timeout():
 		var med_kit_instance = med_kit_scene.instantiate()
 		med_kit_instance.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))
 		add_child(med_kit_instance)
+
+func _on_shop_area_body_entered(body):
+	if body.is_in_group("trees"):
+		body.position = Vector2(rng.randf_range(min_x, max_x), rng.randf_range(min_y, max_y))

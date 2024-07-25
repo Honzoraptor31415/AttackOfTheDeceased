@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://gr71mncd48k0"]
+[gd_scene load_steps=9 format=3 uid="uid://gr71mncd48k0"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_2ib2v"]
 [ext_resource type="Texture2D" uid="uid://bia3q7c7simcm" path="res://assets/light-texture.webp" id="2_mbuas"]
@@ -13,6 +13,30 @@ radius = 448.492
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuw56"]
 radius = 39.0
 height = 92.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3a4m"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0mec"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Zombie" type="CharacterBody2D" groups=["zombies"]]
 script = ExtResource("1_2ib2v")
@@ -59,6 +83,25 @@ shape = SubResource("CapsuleShape2D_xuw56")
 
 [node name="AttackTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="HealthBarContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarContainer"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = 41.0
+offset_right = 51.0
+offset_bottom = 62.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 9
+theme_override_styles/background = SubResource("StyleBoxFlat_c3a4m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a0mec")
+value = 100.0
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="body_entered" from="NearbyArea" to="." method="_on_area_2d_body_entered"]

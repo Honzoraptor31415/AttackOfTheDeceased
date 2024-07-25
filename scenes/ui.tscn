@@ -58,13 +58,13 @@ layout_mode = 2
 theme_override_constants/h_separation = 60
 columns = 3
 
-[node name="ScoreIndicator" type="Label" parent="CenterContainer/Grid"]
+[node name="GoldIndicator" type="Label" parent="CenterContainer/Grid"]
 light_mask = 16
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 22
-text = "Score: 0"
+text = "Gold: 0"
 
 [node name="WaveIndicator" type="Label" parent="CenterContainer/Grid"]
 light_mask = 16
